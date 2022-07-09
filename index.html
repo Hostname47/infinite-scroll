@@ -12,14 +12,52 @@
     <script src="index.js" defer></script>
 </head>
 <body>
+    <img src="" id="background-image" alt=""> <!-- background image -->
     <div id="app">
         <h1>Infinit scroll</h1>
-        <p class="text my8">Hi, my name is <strong>Mouad</strong>, web developer from Morocco. In this snippet, I'm gonna use <em>NASA API</em> to fetch data of Earth planet and implement some kind of <strong>infinite scroll</strong> by getting articles every time the user scroll down to the last article.</p>
-        <p class="text my8">NASA pan-sharpened Landsat 8 imagery shows my damn house</p>
-        <figure>
-            <img src="" id="my-house" alt="">
-            <figcaption>Landsat 8 imagery caption of my house</figcaption>
-        </figure>
+        <p class="text my8">Hi, my name is <strong>Mouad</strong>, web developer from Morocco. In this snippet, I'm gonna implement some kind of <strong>infinite scroll</strong> by using <strong>The New York Times</strong> API to fetch articles and every time the user scroll down to the last article we fetch more articles.</p>
+
+        <h2>The New York Times Articles About Space</h2>
+        
+        <div id="articles">
+            
+        </div>
+
+        <!-- First fetch loading -->
+        <div id="first-load-loading-box" class="full-center flex-column">
+            <svg class="spinner infinite-rotate" style="width: 24px; height: 24px; margin: 14px 0;" fill="none" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
+                <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+            </svg>
+            <span class="fs13">please wait..</span>
+        </div>
+
+        <!-- fetch more -->
+        <div id="fetch-more-loading-box" class="full-center flex-column none">
+            <svg class="spinner" style="width: 24px; height: 24px; margin: 14px 0;" fill="none" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
+                <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+            </svg>
+            <span class="fs13">fetching more articles..</span>
+        </div>
+
+        <!-- article component to clone since we don't use components -->
+        <article class="article article-skeleton none">
+            <div class="full-center thumbnail-box">
+                <img src="" class="thumbnail" alt="">
+            </div>
+            <div class="meta-box" style="height: max-content;">
+                <h2 class="title"><a href="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h2>
+                <p class="summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. At molestiae odio expedita assumenda ipsam earum ex, porro, quod architecto exercitationem aut dolor reprehenderit optio. Ducimus ullam asperiores veniam culpa ut?</p>
+                <div class="align-center my8">
+                    <svg class="size14 mr6" style="margin-top: -2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M357.51,334.33l28.28-28.27a7.1,7.1,0,0,1,12.11,5V439.58A42.43,42.43,0,0,1,355.48,482H44.42A42.43,42.43,0,0,1,2,439.58V128.52A42.43,42.43,0,0,1,44.42,86.1H286.11a7.12,7.12,0,0,1,5,12.11l-28.28,28.28a7,7,0,0,1-5,2H44.42V439.58H355.48V339.28A7,7,0,0,1,357.51,334.33ZM495.9,156,263.84,388.06,184,396.9a36.5,36.5,0,0,1-40.29-40.3l8.83-79.88L384.55,44.66a51.58,51.58,0,0,1,73.09,0l38.17,38.17A51.76,51.76,0,0,1,495.9,156Zm-87.31,27.31L357.25,132,193.06,296.25,186.6,354l57.71-6.45Zm57.26-70.43L427.68,74.7a9.23,9.23,0,0,0-13.08,0L387.29,102l51.35,51.34,27.3-27.3A9.41,9.41,0,0,0,465.85,112.88Z"/></svg>
+                    <span class="fs13 bold author-and-date">By Mouad Nassri</span>
+                </div>
+                <div class="keywords-box">
+                    <span class="fs13 bold">Keywords :</span>
+                </div>
+            </div>
+        </article>
     </div>
 </body>
 </html>

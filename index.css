@@ -10,42 +10,35 @@ body {
     padding: 14px 100px;
 }
 
-.flex {
+.flex { display: flex; }
+
+.align-center {
     display: flex;
+    align-items: center;
 }
 
-.block {
-    display: block;
+.full-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.none {
-    display: none;
-}
+.flex-column { flex-direction: column; }
 
-.flex-column {
-    flex-direction: column;
-}
+.block { display: block; }
+
+.none { display: none !important; }
 
 .my8 {
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
-.mb12 {
-    margin-bottom: 12px;
-}
+.mr6 { margin-right: 6px; }
 
-.mt12 {
-    margin-top: 12px;
-}
+.fs13 { font-size: 13px; }
 
-.mb4 {
-    margin-bottom: 4px;
-}
-
-.mr6 {
-    margin-right: 6px;
-}
+.bold { font-weight: bold; }
 
 h1 {
     text-align: center;
@@ -61,29 +54,79 @@ h1 {
     color: rgb(20, 20, 20);
 }
 
+.size14 {
+    width: 14px;
+    height: 14px;
+}
+
 .infinite-rotate {
     animation: spin 1.4s linear infinite;
     -webkit-animation: spin 1.4s linear infinite;
 }
 
-.size12 {
-    width: 12px;
-    min-width: 12px;
-    height: 12px;
+#articles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-#my-house {
-    width: 600px;
-    height: 300px;
-    background-color: aliceblue;
+.article {
+    display: flex;
+    gap: 12px;
+    background-color: #eef1f214;
+    border: 1px solid #dce1e3d1;
+    padding: 12px;
+    border-radius: 3px;
+    width: 840px;
 }
 
-figcaption {
-    font-size: 12px;
-    color: rgb(71, 71, 71);
-    font-style: italic;
-    text-align: center;
-    margin-top: 4px;
+.article .thumbnail-box {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+    overflow: hidden;
+    background-color: #e8ecee;
+}
+
+.article .thumbnail {
+    width: 100%;
+    height: auto;
+}
+
+.article .title {
+    margin: 0 0 8px 0;
+    font-size: 17px;
+}
+
+.article .title a {
+    text-decoration: none;
+    color: rgb(0, 132, 255);
+}
+
+.article .summary {
+    font-size: 13px;
+    margin: 8px 0;
+    line-height: 1.6;
+    color: rgb(20, 20, 20);
+}
+
+.article .keywords-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.article .keywords-box .keyword {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 4px 6px;
+    background-color: #e0e4e8;
+    border-radius: 3px;
 }
 
 @keyframes spin {
