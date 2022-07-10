@@ -1,7 +1,7 @@
 let articlesBox = document.querySelector('#articles');
 let articleSkeleton = document.querySelector('.article-skeleton');
-let firstChunkFetched = false;
 let page = 0;
+let fetchMoreLock = true;
 
 function nytimesSearch(query='space', page=0) {
     return fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&page=${page}&api-key=iG33pGltkP0ghfzCgEeoAA7t4MscXdht`)
@@ -44,16 +44,51 @@ function append(article, articlesBox, articleSkeleton) {
 nytimesSearch()
     .then(data => {
         let articles = data.response.docs;
+        let fetchmore = document.querySelector('#fetch-more-loading-box');
         
         articles.forEach(article => {
             append(article, articlesBox, articleSkeleton);
         });
 
-        firstChunkFetched = true;
         document.querySelector('#first-load-loading-box').remove();
         page++;
+        
+        fetchmore.classList.remove('none');
+        /**
+         * After fetching the first chunk, we define an intersection observer to observe
+         * when the user scroll to the fetch more element.
+         * We used Intersection Observer API instead of the old school scroll event liteners
+         * and calculating scroll and positions.
+         */
+        let observer = new IntersectionObserver(function(entries) {
+            /**
+             * Here we lock the intersection callback until we get the articles from the
+             * async call.
+             */
+            if(entries[0].isIntersecting === true && fetchMoreLock) {
+                fetchMoreLock = false;
+
+                nytimesSearch('space', page)
+                    .then(data => {
+                        /**
+                         * Once we get the articles successfully, we perform the following actions
+                         *  - increase page to be ready for next fetch (pagination)
+                         *  - unlock the intersection callback by turning lock to true
+                         *  - we get the articles and append them to the articles box
+                         */
+                        page++;
+                        fetchMoreLock = true;
+                        let articles = data.response.docs;
+                        
+                        articles.forEach(article => {
+                            append(article, articlesBox, articleSkeleton);
+                        });
+                    });     
+            }
+        }, { threshold: [0] });
+        
+        observer.observe(fetchmore);
     })
     .catch((error) => {
         console.log(error);
     });
-
