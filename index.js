@@ -26,10 +26,13 @@ function append(article, articlesBox, articleSkeleton) {
         articleComponent.querySelector('.keywords-box').appendChild(keywordElement);
     }
 
+    let thumbnail = articleComponent.querySelector('.thumbnail');
+    thumbnail.alt = article.headline.main;
     if(article.multimedia.length > 0) {
-        let thumbnail = articleComponent.querySelector('.thumbnail');
         thumbnail.src = `http://www.nytimes.com/${article.multimedia[0].url}`;
-        thumbnail.alt = article.headline.main;
+    } else {
+        thumbnail.src = `./assets/images/nytimes.png`;
+        thumbnail.style.width = '85%';
     }
 
     articleComponent.classList.remove('none');
