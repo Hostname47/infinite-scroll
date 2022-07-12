@@ -47,6 +47,12 @@ h1 {
     font-size: 28px;
 }
 
+h2 {
+    text-align: center;
+    letter-spacing: 1.8px;
+    line-height: 1.2;
+}
+
 .text {
     letter-spacing: 1.2px;
     line-height: 1.8;
@@ -78,6 +84,7 @@ h1 {
     padding: 12px;
     border-radius: 3px;
     width: 840px;
+    box-sizing: border-box;
 }
 
 .article .thumbnail-box {
@@ -146,5 +153,26 @@ h1 {
 
     to {
         -webkit-transform: rotate(360deg)
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #app {
+        padding: 0;
+    }
+
+    .article {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .article {
+        flex-direction: column;
+    }
+    
+    .article .thumbnail-box {
+        width: 100%;
+        max-width: unset;
     }
 }
